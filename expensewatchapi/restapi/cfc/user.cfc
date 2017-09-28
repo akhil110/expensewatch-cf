@@ -1,7 +1,7 @@
 <cfcomponent hint="User specific functions" displayname="user">
     
     <!--- User Registration --->
-	<cffunction name="registerUser" access="public" output="false" hint="Register User" returntype="boolean">
+    <cffunction name="registerUser" access="public" output="false" hint="Register User" returntype="boolean">
 	
         <cfargument name="structform" required="true" type="any"  />
 
@@ -47,7 +47,7 @@
 
 
     <!--- User Login --->
-	<cffunction name="loginUser" access="public" output="false" hint="Login User" returntype="struct">
+    <cffunction name="loginUser" access="public" output="false" hint="Login User" returntype="struct">
 	
         <cfargument name="structform" required="true" type="any" />
         
@@ -88,7 +88,7 @@
 
 
     <!--- User Details --->
-	<cffunction name="userDetails" access="public" output="false" hint="Get user details" returntype="struct">
+    <cffunction name="userDetails" access="public" output="false" hint="Get user details" returntype="struct">
 	
         <cfargument name="userid" required="true" type="numeric" />
         <cfset var resObj = {}>
@@ -124,7 +124,7 @@
     </cffunction>
 
     <!--- Update User Details --->
-	<cffunction name="updateUser" access="public" output="false" hint="Update user details" returntype="struct">
+    <cffunction name="updateUser" access="public" output="false" hint="Update user details" returntype="struct">
         
         <cfargument name="userid" required="true" type="numeric" />
         <cfargument name="structform" required="true" type="any" />
@@ -165,7 +165,7 @@
     </cffunction>
 
     <!--- Update User Password --->
-	<cffunction name="updatePassword" access="public" output="false" hint="Update user password" returntype="struct">
+    <cffunction name="updatePassword" access="public" output="false" hint="Update user password" returntype="struct">
         
         <cfargument name="userid" required="true" type="numeric" />
         <cfargument name="structform" required="true" type="any" />
