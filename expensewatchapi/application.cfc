@@ -3,7 +3,7 @@
 	<!--- Application name, unique to production and development environments --->
 	<cfset this.name = "expensewatch">
 	<cfset this.restsettings.cfclocation = "./">
-    <cfset this.restsettings.skipcfcwitherror = true>
+        <cfset this.restsettings.skipcfcwitherror = true>
     
 
 	<!--- Run when application starts up --->
