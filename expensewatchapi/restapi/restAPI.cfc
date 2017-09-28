@@ -66,7 +66,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objUser.userDetails(arguments.id)>
         </cfif>
@@ -85,7 +85,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objUser.updateUser(arguments.id, arguments.structform)>
         </cfif>
@@ -104,7 +104,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+     	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objUser.updatePassword(arguments.id, arguments.structform)>
         </cfif>
@@ -124,7 +124,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objExp.saveExpense(arguments.id, arguments.structform)>
         </cfif>
@@ -142,7 +142,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objExp.delExpense(arguments.id)>
         </cfif>
@@ -160,7 +160,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objExp.getExpense(arguments.id)>
         </cfif>
@@ -197,7 +197,7 @@
         <cfif not verify.success>
             <cfset response["success"] = false>
             <cfset response["message"] = verify.message>
-			      <cfset response["errcode"] = 'no-token'>
+	    <cfset response["errcode"] = 'no-token'>
         <cfelse>
             <cfset response = objExp.expReport(structval)>
         </cfif>
