@@ -145,7 +145,7 @@
                 <cfquery name="qReport" datasource="expense">
                     select *,
                     (select count(*) from expense where YEAR(expensedate) = YEAR(CURRENT_DATE()) and MONTH(expensedate) = MONTH(CURRENT_DATE()) and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as totalCount,
-					          (select sum(expenseamt) from expense where YEAR(expensedate) = YEAR(CURRENT_DATE()) and MONTH(expensedate) = MONTH(CURRENT_DATE()) and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
+		    (select sum(expenseamt) from expense where YEAR(expensedate) = YEAR(CURRENT_DATE()) and MONTH(expensedate) = MONTH(CURRENT_DATE()) and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
                     from expense 
                     where YEAR(expensedate) = YEAR(CURRENT_DATE()) and 
                     MONTH(expensedate) = MONTH(CURRENT_DATE())
@@ -157,7 +157,7 @@
                 <cfquery name="qReport" datasource="expense">
                     select *,
                     (select count(*) from expense where expensedate between <cfqueryparam cfsqltype="cf_sql_date" value="#structform.from_dt#"> and <cfqueryparam cfsqltype="cf_sql_date" value="#structform.to_dt#"> and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#structform.uid#">) as totalCount,
-					          (select sum(expenseamt) from expense where expensedate between <cfqueryparam cfsqltype="cf_sql_date" value="#structform.from_dt#"> and <cfqueryparam cfsqltype="cf_sql_date" value="#structform.to_dt#"> and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
+		    (select sum(expenseamt) from expense where expensedate between <cfqueryparam cfsqltype="cf_sql_date" value="#structform.from_dt#"> and <cfqueryparam cfsqltype="cf_sql_date" value="#structform.to_dt#"> and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
                     from expense
                     where expensedate between <cfqueryparam cfsqltype="cf_sql_date" value="#structform.from_dt#"> and <cfqueryparam cfsqltype="cf_sql_date" value="#structform.to_dt#">
                     and userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#structform.uid#">
@@ -168,7 +168,7 @@
                 <cfquery name="qReport" datasource="expense">
                     select *,
                     (select count(*) from expense where userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as totalCount,
-					          (select sum(expenseamt) from expense where userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
+		    (select sum(expenseamt) from expense where userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.structform.uid#">) as exptotal
                     from expense
                     where userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#structform.uid#">
                     order by #arguments.structform.sortby#
@@ -190,7 +190,7 @@
             <cfset resObj["success"] = true>
             <cfset resObj["data"] = SerializeJSON(returnArray)>
             <cfset resObj["totalrows"] = qReport.totalCount>
-			<cfset resObj["exptotal"] = qReport.exptotal>
+	    <cfset resObj["exptotal"] = qReport.exptotal>
 
             <cfcatch type="any">
                 <cfset resObj["success"] = false>
