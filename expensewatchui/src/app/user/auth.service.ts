@@ -1,27 +1,59 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanActivate } from '@angular/router';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 
-import { AuthService } from './auth.service';
-import { ToastrService } from '../common/toastr.service';
+
+import { IUser } from './user';
 
 @Injectable()
-export  class AuthGuard implements CanActivate {
+export class AuthService {
 
-    constructor(private authService: AuthService,
-                private router: Router,
-                private toastr: ToastrService) { }
+    public currentUser: IUser;
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        return this.checkLoggedIn(state.url);
+    constructor(private http: Http) {}
+
+    isLoggedIn(): boolean {
+        try {
+            const theUser: any = JSON.parse(localStorage.getItem('currentUser'));
+            if (theUser) {
+                this.currentUser = theUser.user;
+            }
+        } catch (e) {
+            return false;
+        }
+        return !!this.currentUser;
     }
 
-    checkLoggedIn(url: string): boolean {
-        if (this.authService.isLoggedIn()) {
-            return true;
-        }
+    login(oUser) {
+        const headers = new Headers({ 'Content-Type': 'application/json'});
+        const options = new RequestOptions({headers: headers});
 
-        this.toastr.info('Please login to access this page.');
-        this.router.navigate(['/login']);
-        return false;
+        return this.http.post('http://localhost:8500/rest/api/expenseAPI/login', JSON.stringify(oUser), options)
+        .do((response: Response) => {
+            if (response.json().success) {
+                this.currentUser = <IUser>response.json().message;
+                const userObj: any = {};
+                userObj.user = response.json().message;
+                userObj.token = response.json().token;
+
+                localStorage.setItem('currentUser', JSON.stringify(userObj));
+            }
+            response.json();
+        })
+        .catch(this.handleError);
+    }
+
+    logout(): void {
+        this.currentUser = null;
+        localStorage.removeItem('currentUser');
+    }
+
+     private handleError(error: Response) {
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 }
